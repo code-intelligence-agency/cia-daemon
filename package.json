@@ -1,0 +1,40 @@
+{
+  "name": "cia-daemon",
+  "version": "0.0.1",
+  "description": "gathers the data from babel-cia and stores them in levelDB on local machine",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-intelligence-agency/cia-daemon.git"
+  },
+  "keywords": [
+    "code",
+    "intelligence",
+    "logger"
+  ],
+  "author": "capajj@gmail.com",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/code-intelligence-agency/cia-daemon/issues"
+  },
+  "homepage": "https://github.com/code-intelligence-agency/cia-daemon#readme",
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "instabot": "^0.1.2",
+    "standard": "^8.6.0"
+  },
+  "dependencies": {
+    "co-body": "^4.2.0",
+    "koa": "^1.2.4",
+    "koa-json-error": "^3.1.0",
+    "koa-router": "^5.4.0",
+    "level": "^1.5.0",
+    "level-sublevel": "^6.6.1",
+    "leveldown": "^1.5.3",
+    "levelup": "^1.3.3"
+  }
+}
