@@ -1,6 +1,7 @@
 // require('instabot')
 global.Promise = require('bluebird')
-const app = require('koa')()
+const Koa = require('koa')
+const app = new Koa()
 app.use(require('./lib/err-handler'))
 const router = require('koa-router')()
 const boom = require('boom')
@@ -30,8 +31,8 @@ events.createReadStream().on('data', ({key, value}) => {
 })
 
 
-router.post('/run', function *() {
-  const body = yield parse(this)
+router.post('/run', async function (ctx) {
+  const body = await parse(ctx)
   if (!body.hostname) {
     body.hostname = os.hostname()
   }
@@ -39,22 +40,22 @@ router.post('/run', function *() {
     throw boom.badRequest('localPath is required property on payload')
   }
   const key = keys.run(body)
-  yield runs.put(key, body)
-  this.body = {
+  await runs.put(key, body)
+  ctx.body = {
     key
   }
-  this.status = 201
+  ctx.status = 201
 })
 
-router.post('/:runId/event', function *() {
-  const event = yield parse(this)
+router.post('/:runId/event', async function (ctx) {
+  const event = await parse(ctx)
   const key = keys.event(event)
 
-  yield events.put(key, event)
-  this.body = {
+  await events.put(key, event)
+  ctx.body = {
     key
   }
-  this.status = 201
+  ctx.status = 201
 })
 
 app
